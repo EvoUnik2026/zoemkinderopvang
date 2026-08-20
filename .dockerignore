@@ -1,0 +1,13 @@
+.git
+.gitignore
+.dockerignore
+.qodo
+build.log
+build.err
+build.pid
+README.md
+*.md
+.env
+db_data/
+node_modules/
+logs/

@@ -1,0 +1,21 @@
+# Environment / secrets
+.env
+
+# Docker
+db_data/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/*.log
+!logs/.gitkeep
+
+# Temporary build logs
+build.err
+build.log
+build.pid

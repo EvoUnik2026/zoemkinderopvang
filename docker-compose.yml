@@ -1,0 +1,74 @@
+services:
+  ### Web server (Nginx) - serves the PHP site on port 8080
+  nginx:
+    image: nginx:alpine
+    container_name: zoemkinderopvang-nginx
+    restart: unless-stopped
+    ports:
+      - "${NGINX_PORT:-8080}:80"
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./public:/var/www/html/public
+      - ./app:/var/www/html/app
+      - ./routes.php:/var/www/html/routes.php:ro
+      - ./.env:/var/www/html/.env:ro
+      - ./logs:/var/www/html/logs
+    depends_on:
+      - php
+    networks:
+      - zoemkinderopvang
+
+  ### PHP-FPM - renders the application, talks to MariaDB
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: zoemkinderopvang-php
+    restart: unless-stopped
+    volumes:
+      - ./public:/var/www/html/public
+      - ./app:/var/www/html/app
+      - ./routes.php:/var/www/html/routes.php:ro
+      - ./.env:/var/www/html/.env:ro
+      - ./logs:/var/www/html/logs
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
+    networks:
+      - zoemkinderopvang
+
+  ### MariaDB - stores settings, services, locations, reviews, bookings
+  mariadb:
+    image: mariadb:11
+    container_name: zoemkinderopvang-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+    networks:
+      - zoemkinderopvang
+
+  ### Adminer - database management UI on port 8082
+  adminer:
+    image: adminer:latest
+    container_name: zoemkinderopvang-adminer
+    restart: unless-stopped
+    ports:
+      - "${ADMINER_PORT:-8082}:8080"
+    depends_on:
+      - mariadb
+    networks:
+      - zoemkinderopvang
+
+volumes:
+  db_data:
+
+networks:
+  zoemkinderopvang:
+    driver: bridge
