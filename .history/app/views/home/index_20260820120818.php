@@ -114,7 +114,7 @@
         <div class="pedagogy-grid">
             <?php foreach ($pedagogy as $p): ?>
                 <div class="pedagogy-card reveal">
-                    <span class="pedagogy-icon"><?php echo $p['icon'] !== '' ? e($p['icon']) : '&#10003;'; ?></span>
+                    <span class="pedagogy-icon"><?php echo e($p['icon'] ?: '&#10003;'); ?></span>
                     <h3><?php echo e($p['title']); ?></h3>
                     <p><?php echo e($p['description']); ?></p>
                 </div>

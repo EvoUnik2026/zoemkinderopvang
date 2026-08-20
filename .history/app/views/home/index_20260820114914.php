@@ -14,7 +14,7 @@
     <div class="container hero-inner">
         <div class="hero-content">
             <span class="hero-kicker">Welkom bij <?php echo escape(s('site_name')); ?></span>
-            <h1>Spelen, ontdekken en <em>groeien</em> in een wereld vol aandacht en natuur.</h1>
+            <h1>Spelen, ontdekken en <em>groeien</em> in een wereld vol aandacht en natur.</h1>
             <p>Bij ZOEM beleven kinderen elke dag nieuwe avonturen in een groene, veilige omgeving.</p>
             <div class="hero-cta">
                 <a href="<?php echo $base_url; ?>/register" class="btn btn-gold">Vraag een rondleiding &#10132;</a>
@@ -114,7 +114,7 @@
         <div class="pedagogy-grid">
             <?php foreach ($pedagogy as $p): ?>
                 <div class="pedagogy-card reveal">
-                    <span class="pedagogy-icon"><?php echo $p['icon'] !== '' ? e($p['icon']) : '&#10003;'; ?></span>
+                    <span class="pedagogy-icon"><?php echo e($p['icon'] ?: '&#10003;'); ?></span>
                     <h3><?php echo e($p['title']); ?></h3>
                     <p><?php echo e($p['description']); ?></p>
                 </div>

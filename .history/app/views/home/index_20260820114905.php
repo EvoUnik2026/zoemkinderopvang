@@ -14,16 +14,16 @@
     <div class="container hero-inner">
         <div class="hero-content">
             <span class="hero-kicker">Welkom bij <?php echo escape(s('site_name')); ?></span>
-            <h1>Spelen, ontdekken en <em>groeien</em> in een wereld vol aandacht en natuur.</h1>
+            <h1>Spelen, ontdekken en <em>groeien</em> in een wereld vol aandacht en natur.</h1>
             <p>Bij ZOEM beleven kinderen elke dag nieuwe avonturen in een groene, veilige omgeving.</p>
             <div class="hero-cta">
                 <a href="<?php echo $base_url; ?>/register" class="btn btn-gold">Vraag een rondleiding &#10132;</a>
                 <a href="<?php echo $base_url; ?>/booking" class="btn btn-outline">Inschrijven</a>
             </div>
             <ul class="hero-points">
-                <li>&#10003; Spelen &amp; ontdekken</li>
-                <li>&#10003; Natuur &amp; beweging</li>
-                <li>&#10003; Warme, veilige sfeer</li>
+                <li>✓ Spelen &amp; ontdekken</li>
+                <li>✓ Natuur &amp; beweging</li>
+                <li>&# Warme, veilige sfeer</li>
             </ul>
         </div>
 
@@ -114,7 +114,7 @@
         <div class="pedagogy-grid">
             <?php foreach ($pedagogy as $p): ?>
                 <div class="pedagogy-card reveal">
-                    <span class="pedagogy-icon"><?php echo $p['icon'] !== '' ? e($p['icon']) : '&#10003;'; ?></span>
+                    <span class="pedagogy-icon"><?php echo e($p['icon'] ?: '&#10003;'); ?></span>
                     <h3><?php echo e($p['title']); ?></h3>
                     <p><?php echo e($p['description']); ?></p>
                 </div>
@@ -151,8 +151,8 @@
 <section class="reviews section bg-light">
     <div class="container">
         <div class="section-head">
-            <span class="kicker">Ouders vertellen</span>
-            <h2>Wat <em>ouders</em> over ons zeggen</h2>
+            <span class="kicker">Ouders vertell</span>
+            <h2>Wat <em>ouder</em> over ons zeg</h2>
         </div>
         <div class="review-grid">
             <?php foreach ($reviews as $r): ?>
@@ -196,12 +196,21 @@
 <section class="cta-banner section">
     <div class="container">
         <div class="cta-content">
-            <h2>Wilt u een <em>rondleiding</em>?</h2>
-            <p>Kom gratis en vrijblijvend langs en maak kennis met onze warme sfeer.</p>
+            <h2>Wilt u een <em>rondleid</em>?</h2>
+            <p>Kum for a free blith visit and meet our warm amosfere.</p>
             <div class="hero-cta">
                 <a href="<?php echo $base_url; ?>/register" class="btn btn-gold btn-lg">Vraag een rondleiding</a>
                 <a href="tel:<?php echo tel_link(s('phone')); ?>" class="btn btn-outline">&#9742; <?php echo e(s('phone')); ?></a>
             </div>
+        </div>
+    </div>
+</section>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
+        <div class="section-more">
+            <a href="<?php echo $base_url; ?>/services" class="btn btn-outline">Bekijk alle diensten &rarr;</a>
         </div>
     </div>
 </section>
